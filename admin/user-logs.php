@@ -33,7 +33,7 @@ else{
 
 	<div class="module">
 							<div class="module-head">
-								<h3>Manage Users</h3>
+								<h3>Users</h3>
 							</div>
 							<div class="module-body table">
 	
@@ -42,7 +42,7 @@ else{
 									<thead>
 										<tr>
 											<th>#</th>
-											<th> User Email</th>
+											<th>User Email</th>
 											<th>User IP </th>
 											<th>Login Time</th>
 											<th>Logout Time </th>
