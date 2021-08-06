@@ -81,11 +81,7 @@ include('includes/config.php');
 	</form>	
 </div>			</div><!-- /.row -->
 		</div><!-- /.sigin-in-->
-		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
-<div 
 
-<?php echo include('includes/brands-slider.php');?>
-</div>
 </div>
 <?php include('includes/footer.php');?>
 	<script src="assets/js/jquery-1.11.1.min.js"></script>

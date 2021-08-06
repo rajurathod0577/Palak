@@ -56,7 +56,7 @@ $num1 = mysqli_num_rows($rt);
 							</li>
 							
 							<li>
-								<a href="manage-users.php">
+								<a href="users.php">
 									<i class="menu-icon icon-group"></i>
 									Users
 								</a>

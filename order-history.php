@@ -150,9 +150,7 @@ while($row=mysqli_fetch_array($query))
 		</div><!-- /.shopping-cart -->
 		</div> <!-- /.row -->
 		</form>
-		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
-<?php echo include('includes/brands-slider.php');?>
-<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
+		</div><!-- /.container -->
 </div><!-- /.body-content -->
 <?php include('includes/footer.php');?>
 
