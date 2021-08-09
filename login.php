@@ -1,17 +1,17 @@
 <?php
 session_start();
 error_reporting(0);
+
 include('includes/config.php');
+
 // Code user Registration
-if(isset($_POST['submit']))
-{
+if(isset($_POST['submit'])){
 $name=$_POST['fullname'];
 $email=$_POST['emailid'];
 $contactno=$_POST['contactno'];
 $password=md5($_POST['password']);
 $query=mysqli_query($con,"insert into users(name,email,contactno,password) values('$name','$email','$contactno','$password')");
-if($query)
-{
+if($query){
 	echo "<script>alert('You are successfully register');</script>";
 }
 else{
