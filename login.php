@@ -18,6 +18,7 @@ else{
 echo "<script>alert('Not register something went worng');</script>";
 }
 }
+
 // Code for User login
 if(isset($_POST['login']))
 {
