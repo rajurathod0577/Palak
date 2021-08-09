@@ -9,7 +9,6 @@ html, body{
 }
 
 body{
-	background:#7fcae8 url('../img/background.jpg') no-repeat;
 	background-size:cover;
 	background-attachment:fixed;
 	font: 300 16px 'Roboto', Helvetica, Arial, sans-serif;

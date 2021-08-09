@@ -1,6 +1,6 @@
 <?php 
 
- if(isset($_Get['action'])){
+if(isset($_Get['action'])){
 		if(!empty($_SESSION['cart'])){
 		foreach($_POST['quantity'] as $key => $val){
 			if($val==0){
@@ -16,6 +16,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+
 <!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
 	<a href="index.php">
@@ -79,7 +80,7 @@ if(!empty($_SESSION['cart'])){
 				$totalprice += $subtotal;
 				$_SESSION['qnty']=$totalqunty+=$quantity;
 
-	?>
+		 ?>
 		
 		
 			<li>

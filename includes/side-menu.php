@@ -10,7 +10,7 @@ while($row=mysqli_fetch_array($sql))
     ?>
                 <a href="category.php?cid=<?php echo $row['id'];?>" class="dropdown-toggle"><i class="icon bi bi-bag"></i>
                 <?php echo $row['categoryName'];?></a>
-                <?php }?>
+                <?php } ?>
                         
 </li>
 </ul>
