@@ -55,9 +55,7 @@ exit();
 }
 }
 
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +70,7 @@ exit();
     <meta name="keywords" content="jewelry, jewellery">
     <meta name="robots" content="all">
 
-    <title>Shopping Portal | Signi-in | Signup</title>
+    <title>Palak Jewellers | Signi-in | Signup</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
