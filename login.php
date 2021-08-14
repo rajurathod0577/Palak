@@ -10,9 +10,32 @@ $name=$_POST['fullname'];
 $email=$_POST['emailid'];
 $contactno=$_POST['contactno'];
 $password=md5($_POST['password']);
-$query=mysqli_query($con,"insert into users(name,email,contactno,password) values('$name','$email','$contactno','$password')");
+$tokan=md5(time().$name);
+$query=mysqli_query($con,"insert into users(name,email,contactno,password,tokan) values('$name','$email','$contactno','$password','$tokan')");
 if($query){
-	echo "<script>alert('You are successfully register');</script>";
+
+    $to=$email;
+    $subject="Email Verification";
+    $message="<html>
+                    <div style=\"line-height: 160%; text-align: center; word-wrap: break-word;\">
+                    <p style=\"font-size: 14px; line-height: 160%;\"><span style=\"font-size: 22px; line-height: 35.2px;\"> Email Confirmation </span></p>
+                <p style=\"font-size: 14px; line-height: 160%;\"><span style=\"font-size: 18px; line-height: 28.8px;\">You're almost ready to get started. Please click on the button below to verify your email</span></p>
+                </div>
+
+                    <div align=\"center\">
+                        <a href=\"http://localhost/palak/verify.php?tokan=$tokan\" target=\"_blank\" style=\"box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff6600; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;\">
+                        <span style=\"display:block;padding:14px 44px 13px;line-height:120%;\"><span style=\"font-size: 16px; line-height: 19.2px;\"><strong><span style=\"line-height: 19.2px; font-size: 16px;\">VERIFY YOUR EMAIL</span></strong></span></span>
+                        </a>
+                    </div>
+            </html>";
+    $headers="From: Palak Jewellers <palakjewellers227@gmail.com> \r\n";
+    $headers .= "MIME-Version: 1.0"."\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+
+    mail($to, $subject, $message, $headers);
+
+    echo "<script>alert('Registration Successful, Please verify in the registered Email-Id');</script>";
+
 }
 else{
 echo "<script>alert('Not register something went worng');</script>";
@@ -24,10 +47,11 @@ if(isset($_POST['login']))
 {
    $email=$_POST['email'];
    $password=md5($_POST['password']);
-$query=mysqli_query($con,"SELECT * FROM users WHERE email='$email' and password='$password'");
+$query=mysqli_query($con,"SELECT * FROM users WHERE email='$email' and password='$password' and status='1'");
 $num=mysqli_fetch_array($query);
-if($num>0)
-{
+$query2=mysqli_query($con,"SELECT * FROM users WHERE email='$email' and password='$password' and status='0'");
+$num2=mysqli_fetch_array($query2);
+if($num>0){
 $extra="my-cart.php";
 $_SESSION['login']=$_POST['email'];
 $_SESSION['id']=$num['id'];
@@ -40,8 +64,7 @@ $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
 exit();
 }
-else
-{
+elseif($num2>0){
 $extra="login.php";
 $email=$_POST['email'];
 $uip=$_SERVER['REMOTE_ADDR'];
@@ -50,7 +73,19 @@ $log=mysqli_query($con,"insert into userlog(userEmail,userip,status) values('$em
 $host  = $_SERVER['HTTP_HOST'];
 $uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
-$_SESSION['errmsg']="Invalid email id or Password";
+$_SESSION['errmsg']="Activate Your Account";
+exit();
+}
+else{
+$extra="login.php";
+$email=$_POST['email'];
+$uip=$_SERVER['REMOTE_ADDR'];
+$status=0;
+$log=mysqli_query($con,"insert into userlog(userEmail,userip,status) values('$email','$uip','$status')");
+$host  = $_SERVER['HTTP_HOST'];
+$uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+header("location:http://$host$uri/$extra");
+$_SESSION['errmsg']="Invalid Email id or Password";
 exit();
 }
 }
@@ -256,7 +291,7 @@ echo htmlentities($_SESSION['errmsg']="");
 
         </div>
     </div>
-	
+
     <?php include('includes/footer.php');?>
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
