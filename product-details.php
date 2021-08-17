@@ -594,7 +594,7 @@ if (isset($_POST['submit'])) {
     <!-- ============================================== UPSELL PRODUCTS ============================================== -->
     <section class="section featured-product wow fadeInUp">
         <!-- Animate.css-->
-        <h3 class="section-title">Realted Products </h3>
+        <h3 class="section-title">Related Products </h3>
         <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
 
             <?php

@@ -5,89 +5,87 @@ error_reporting(0);
 include('includes/config.php');
 
 // Code user Registration
-if(isset($_POST['submit'])){
-$name=$_POST['fullname'];
-$email=$_POST['emailid'];
-$contactno=$_POST['contactno'];
-$password=md5($_POST['password']);
-$tokan=md5(time().$name);
-$query=mysqli_query($con,"insert into users(name,email,contactno,password,tokan) values('$name','$email','$contactno','$password','$tokan')");
-if($query){
+if (isset($_POST['submit'])) {
+    $name = $_POST['fullname'];
+    $email = $_POST['emailid'];
+    $contactno = $_POST['contactno'];
+    $password = md5($_POST['password']);
+    $tokan = md5(time() . $name);
+    $query = mysqli_query($con, "insert into users(name,email,contactno,password,tokan) values('$name','$email','$contactno','$password','$tokan')");
+    if ($query) {
 
-    $to=$email;
-    $subject="Email Verification";
-    $message="<html>
+        $host = $_SERVER['HTTP_HOST'];
+        $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        $extra = "verify.php?tokan=$tokan";
+        $to = $email;
+        $subject = "Email Verification";
+        $message = "<html>
                     <div style=\"line-height: 160%; text-align: center; word-wrap: break-word;\">
                     <p style=\"font-size: 14px; line-height: 160%;\"><span style=\"font-size: 22px; line-height: 35.2px;\"> Email Confirmation </span></p>
                 <p style=\"font-size: 14px; line-height: 160%;\"><span style=\"font-size: 18px; line-height: 28.8px;\">You're almost ready to get started. Please click on the button below to verify your email</span></p>
                 </div>
 
                     <div align=\"center\">
-                        <a href=\"http://localhost/palak/verify.php?tokan=$tokan\" target=\"_blank\" style=\"box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff6600; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;\">
+                        <a href=\"http://$host$uri/$extra\" target=\"_blank\" style=\"box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff6600; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;\">
                         <span style=\"display:block;padding:14px 44px 13px;line-height:120%;\"><span style=\"font-size: 16px; line-height: 19.2px;\"><strong><span style=\"line-height: 19.2px; font-size: 16px;\">VERIFY YOUR EMAIL</span></strong></span></span>
                         </a>
                     </div>
             </html>";
-    $headers="From: Palak Jewellers <palakjewellers227@gmail.com> \r\n";
-    $headers .= "MIME-Version: 1.0"."\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+        $headers = "From: Palak Jewellers <palakjewellers227@gmail.com> \r\n";
+        $headers .= "MIME-Version: 1.0" . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-    mail($to, $subject, $message, $headers);
+        mail($to, $subject, $message, $headers);
 
-    echo "<script>alert('Registration Successful, Please verify in the registered Email-Id');</script>";
-
-}
-else{
-echo "<script>alert('Not register something went worng');</script>";
-}
+        echo "<script>alert('Registration Successful, Please verify in the registered Email-Id');</script>";
+    } else {
+        echo "<script>alert('Not register something went worng');</script>";
+    }
 }
 
 // Code for User login
-if(isset($_POST['login']))
-{
-   $email=$_POST['email'];
-   $password=md5($_POST['password']);
-$query=mysqli_query($con,"SELECT * FROM users WHERE email='$email' and password='$password' and status='1'");
-$num=mysqli_fetch_array($query);
-$query2=mysqli_query($con,"SELECT * FROM users WHERE email='$email' and password='$password' and status='0'");
-$num2=mysqli_fetch_array($query2);
-if($num>0){
-$extra="my-cart.php";
-$_SESSION['login']=$_POST['email'];
-$_SESSION['id']=$num['id'];
-$_SESSION['username']=$num['name'];
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=1;
-$log=mysqli_query($con,"insert into userlog(userEmail,userip,status) values('".$_SESSION['login']."','$uip','$status')");
-$host=$_SERVER['HTTP_HOST'];
-$uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-exit();
-}
-elseif($num2>0){
-$extra="login.php";
-$email=$_POST['email'];
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=0;
-$log=mysqli_query($con,"insert into userlog(userEmail,userip,status) values('$email','$uip','$status')");
-$host  = $_SERVER['HTTP_HOST'];
-$uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-$_SESSION['errmsg']="Activate Your Account";
-exit();
-}
-else{
-$extra="login.php";
-$email=$_POST['email'];
-$uip=$_SERVER['REMOTE_ADDR'];
-$status=0;
-$log=mysqli_query($con,"insert into userlog(userEmail,userip,status) values('$email','$uip','$status')");
-$host  = $_SERVER['HTTP_HOST'];
-$uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-$_SESSION['errmsg']="Invalid Email id or Password";
-exit();
-}
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    $query = mysqli_query($con, "SELECT * FROM users WHERE email='$email' and password='$password' and status='1'");
+    $num = mysqli_fetch_array($query);
+    $query2 = mysqli_query($con, "SELECT * FROM users WHERE email='$email' and password='$password' and status='0'");
+    $num2 = mysqli_fetch_array($query2);
+    if ($num > 0) {
+        $extra = "my-cart.php";
+        $_SESSION['login'] = $_POST['email'];
+        $_SESSION['id'] = $num['id'];
+        $_SESSION['username'] = $num['name'];
+        $uip = $_SERVER['REMOTE_ADDR'];
+        $status = 1;
+        $log = mysqli_query($con, "insert into userlog(userEmail,userip,status) values('" . $_SESSION['login'] . "','$uip','$status')");
+        $host = $_SERVER['HTTP_HOST'];
+        $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        header("location:http://$host$uri/$extra");
+        exit();
+    } elseif ($num2 > 0) {
+        $extra = "login.php";
+        $email = $_POST['email'];
+        $uip = $_SERVER['REMOTE_ADDR'];
+        $status = 0;
+        $log = mysqli_query($con, "insert into userlog(userEmail,userip,status) values('$email','$uip','$status')");
+        $host  = $_SERVER['HTTP_HOST'];
+        $uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        header("location:http://$host$uri/$extra");
+        $_SESSION['errmsg'] = "Activate Your Account";
+        exit();
+    } else {
+        $extra = "login.php";
+        $email = $_POST['email'];
+        $uip = $_SERVER['REMOTE_ADDR'];
+        $status = 0;
+        $log = mysqli_query($con, "insert into userlog(userEmail,userip,status) values('$email','$uip','$status')");
+        $host  = $_SERVER['HTTP_HOST'];
+        $uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        header("location:http://$host$uri/$extra");
+        $_SESSION['errmsg'] = "Invalid Email id or Password";
+        exit();
+    }
 }
 
 ?>
@@ -131,29 +129,29 @@ exit();
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <script type="text/javascript">
-    function valid() {
-        if (document.register.password.value != document.register.confirmpassword.value) {
-            alert("Password and Confirm Password Field do not match  !!");
-            document.register.confirmpassword.focus();
-            return false;
+        function valid() {
+            if (document.register.password.value != document.register.confirmpassword.value) {
+                alert("Password and Confirm Password Field do not match  !!");
+                document.register.confirmpassword.focus();
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
     </script>
     <script>
-    function userAvailability() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "check_availability.php",
-            data: 'email=' + $("#email").val(),
-            type: "POST",
-            success: function(data) {
-                $("#user-availability-status1").html(data);
-                $("#loaderIcon").hide();
-            },
-            error: function() {}
-        });
-    }
+        function userAvailability() {
+            $("#loaderIcon").show();
+            jQuery.ajax({
+                url: "check_availability.php",
+                data: 'email=' + $("#email").val(),
+                type: "POST",
+                success: function(data) {
+                    $("#user-availability-status1").html(data);
+                    $("#loaderIcon").hide();
+                },
+                error: function() {}
+            });
+        }
     </script>
 
 
@@ -168,14 +166,14 @@ exit();
     <header class="header-style-1">
 
         <!-- ============================================== TOP MENU ============================================== -->
-        <?php include('includes/top-header.php');?>
+        <?php include('includes/top-header.php'); ?>
         <!-- ============================================== TOP MENU : END ============================================== -->
-        <?php include('includes/main-header.php');?>
+        <?php include('includes/main-header.php'); ?>
         <!-- ============================================== NAVBAR ============================================== -->
-        <?php include('includes/menu-bar.php');?>
+        <?php include('includes/menu-bar.php'); ?>
         <!-- ============================================== NAVBAR : END ============================================== -->
         <!-- ============================================== Whatsapp API ============================================== -->
-        <?php include('includes/whatsapp.php');?>
+        <?php include('includes/whatsapp.php'); ?>
         <!-- ============================================== Whatsapp API : END ============================================== -->
 
 
@@ -204,28 +202,25 @@ exit();
                         <form class="register-form outer-top-xs" method="post">
                             <span style="color:red;">
                                 <?php
-echo htmlentities($_SESSION['errmsg']);
-?>
+                                echo htmlentities($_SESSION['errmsg']);
+                                ?>
                                 <?php
-echo htmlentities($_SESSION['errmsg']="");
-?>
+                                echo htmlentities($_SESSION['errmsg'] = "");
+                                ?>
                             </span>
                             <div class="form-group">
                                 <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                                <input type="email" name="email" class="form-control unicase-form-control text-input"
-                                    id="exampleInputEmail1">
+                                <input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
                             </div>
                             <div class="form-group">
                                 <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                                <input type="password" name="password"
-                                    class="form-control unicase-form-control text-input" id="exampleInputPassword1">
+                                <input type="password" name="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1">
                             </div>
                             <div class="radio outer-xs">
                                 <a href="forgot-password.php" class="forgot-password pull-right">Forgot your
                                     Password?</a>
                             </div>
-                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button"
-                                name="login">Login</button>
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button" name="login">Login</button>
                         </form>
                     </div>
                     <!-- Sign-in -->
@@ -234,43 +229,36 @@ echo htmlentities($_SESSION['errmsg']="");
                     <div class="col-md-6 col-sm-6 create-new-account">
                         <h4 class="checkout-subtitle">create a new account</h4>
                         <p class="text title-tag-line">Create your own Shopping account.</p>
-                        <form class="register-form outer-top-xs" role="form" method="post" name="register"
-                            onSubmit="return valid();">
+                        <form class="register-form outer-top-xs" role="form" method="post" name="register" onSubmit="return valid();">
                             <div class="form-group">
                                 <label class="info-title" for="fullname">Full Name <span>*</span></label>
-                                <input type="text" class="form-control unicase-form-control text-input" id="fullname"
-                                    name="fullname" required="required">
+                                <input type="text" class="form-control unicase-form-control text-input" id="fullname" name="fullname" required="required">
                             </div>
 
 
                             <div class="form-group">
                                 <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                                <input type="email" class="form-control unicase-form-control text-input" id="email"
-                                    onBlur="userAvailability()" name="emailid" required>
+                                <input type="email" class="form-control unicase-form-control text-input" id="email" onBlur="userAvailability()" name="emailid" required>
                                 <span id="user-availability-status1" style="font-size:12px;"></span>
                             </div>
 
                             <div class="form-group">
                                 <label class="info-title" for="contactno">Contact No. <span>*</span></label>
-                                <input type="text" class="form-control unicase-form-control text-input" id="contactno"
-                                    name="contactno" maxlength="10" required>
+                                <input type="text" class="form-control unicase-form-control text-input" id="contactno" name="contactno" maxlength="10" required>
                             </div>
 
                             <div class="form-group">
                                 <label class="info-title" for="password">Password. <span>*</span></label>
-                                <input type="password" class="form-control unicase-form-control text-input"
-                                    id="password" name="password" required>
+                                <input type="password" class="form-control unicase-form-control text-input" id="password" name="password" required>
                             </div>
 
                             <div class="form-group">
                                 <label class="info-title" for="confirmpassword">Confirm Password. <span>*</span></label>
-                                <input type="password" class="form-control unicase-form-control text-input"
-                                    id="confirmpassword" name="confirmpassword" required>
+                                <input type="password" class="form-control unicase-form-control text-input" id="confirmpassword" name="confirmpassword" required>
                             </div>
 
 
-                            <button type="submit" name="submit" class="btn-upper btn btn-primary checkout-page-button"
-                                id="submit">Sign Up</button>
+                            <button type="submit" name="submit" class="btn-upper btn btn-primary checkout-page-button" id="submit">Sign Up</button>
                         </form>
                         <span class="checkout-subtitle outer-top-xs">Sign Up Today And You'll Be Able To : </span>
                         <div class="checkbox">
@@ -292,7 +280,7 @@ echo htmlentities($_SESSION['errmsg']="");
         </div>
     </div>
 
-    <?php include('includes/footer.php');?>
+    <?php include('includes/footer.php'); ?>
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
