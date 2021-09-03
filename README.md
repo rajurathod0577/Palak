@@ -4,7 +4,7 @@ E-COMMERCE WEBSITE
 
 <i>Local Jewellery Shop Website</i>
 
-<b>INTRODUCTION OF PROJECT</b>
+<b style="font-size:50px;">INTRODUCTION OF PROJECT</b>
 
 An E-Commerce website is a project which aims in developing an online store to sell jewellery online. It is an online portal that has several pages with all kinds of information. For this purpose, “Jewellery Shop” is a system essentially use for discovering and shopping for the latest ornaments with their own category like Gold, Silver, Diamond. This system is beneficial in how it makes a less complicated way to purchase jewellery products online. We developed this website’s backend in PHP and MySQL. The website contains two principal aspects Admin and the Customer’s side. This system will minimize the use of paper, damage of files, misplaced information, etc. It has amenities to generate quite a number sorts of reviews which are required by the management for the duration of event organizing. First, the user sees the website where they can see plenty of category bracelets, bangles, earrings, Nose Pin, Diamond Set, Gold Ring, etc. The benefit of the online jewellery store is that customers can purchase or window shop online without being physically present at the shop. In the period of the Corona pandemic, it helps to maintain a safe relation with loyal customers.
 
