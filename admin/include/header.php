@@ -5,8 +5,8 @@
 					<i class="icon-reorder shaded"></i>
 				</a>
 
-			  	<a class="brand" href="index.php">
-			  		Palak Jewellers | Admin
+			  	<a class="brand" href="index.html">
+			  		Shopping Portal | Admin
 			  	</a>
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">
@@ -16,7 +16,7 @@
 						</a></li>
 						<li class="nav-user dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="images/admin1.png" class="nav-avatar rounded" />
+								<img src="images/user.png" class="nav-avatar" />
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
@@ -26,7 +26,7 @@
 							</ul>
 						</li>
 					</ul>
-				</div>
+				</div><!-- /.nav-collapse -->
 			</div>
-		</div>
-	</div>
+		</div><!-- /navbar-inner -->
+	</div><!-- /navbar -->
