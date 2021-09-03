@@ -40,5 +40,9 @@ The project aims and objectives that will be achieved after the completion of th
 
 
 <b>SCREEN SHOTS<b>
-
-<img src="./ss/Home.png">
+  
+<b>Home Page</b>
+<img src="./ss/Home.png" alt="Home Page SS">
+  
+<b>Product Page</b>
+<img src="./ss/Product Details.png" alt="Product Page SS">
