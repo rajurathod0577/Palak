@@ -93,7 +93,8 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         <tr>
                                             <td><?php echo htmlentities($cnt); ?></td>
                                             <td><?php echo htmlentities($row['username']); ?></td>
-                                            <td><?php echo htmlentities($row['useremail']); ?>/<?php echo htmlentities($row['usercontact']); ?>
+                                            <td><?php echo htmlentities($row['useremail']); ?>/<br>
+                                                <?php echo htmlentities($row['usercontact']); ?>
                                             </td>
 
                                             <td><?php echo htmlentities($row['shippingaddress'] . "," . $row['shippingcity'] . "," . $row['shippingstate'] . "-" . $row['shippingpincode']); ?>
