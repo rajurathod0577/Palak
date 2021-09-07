@@ -7,10 +7,10 @@
 // define('DB_NAME', 'palak');
 
 //Configuration for Hosting
-define('DB_SERVER', 'remotemysql.com');
-define('DB_USER', 'PrnwHiDRAX');
-define('DB_PASS', 'ajsu3wWGxJ');
-define('DB_NAME', 'PrnwHiDRAX');
+define('DB_SERVER', 'mysql5045.site4now.net');
+define('DB_USER', 'a797c3_palak');
+define('DB_PASS', 'P@55Word');
+define('DB_NAME', 'db_a797c3_palak');
 
 
 $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
