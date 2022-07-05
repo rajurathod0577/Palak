@@ -21,7 +21,7 @@ if(isset($_Get['action'])){
 <div class="logo">
 	<a href="index.php">
 		
-		<h2>Palak Jewellers</h2>
+		<h2>OM Palak Jewellers</h2>
 
 	</a>
 </div>		

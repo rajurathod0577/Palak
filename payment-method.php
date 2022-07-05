@@ -28,7 +28,7 @@ else{
     <meta name="keywords" content="jewelry, jewellery">
     <meta name="robots" content="all">
 
-    <title>Palak Jewellers | Payment Method</title>
+    <title>OM Palak Jewellers | Payment Method</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/gold.css">

@@ -6,7 +6,7 @@
 				</a>
 
 			  	<a class="brand" href="index.php">
-			  		Palak Jewellers | Admin
+			  		OM Palak Jewellers | Admin
 			  	</a>
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">

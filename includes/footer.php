@@ -9,7 +9,7 @@
     <div class="footer-logo">
         <div class="logo">
             <a href="index.php">
-<h3>Palak Jewellers</h3>
+<h3>OM Palak Jewellers</h3>
             </a>
         </div><!-- /.logo -->
     </div><!-- /.footer-logo -->

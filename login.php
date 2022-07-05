@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
                         </a>
                     </div>
             </html>";
-        $headers = "From: Palak Jewellers <palakjewellers227@gmail.com> \r\n";
+        $headers = "From: OM Palak Jewellers <palakjewellers227@gmail.com> \r\n";
         $headers .= "MIME-Version: 1.0" . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
@@ -103,7 +103,7 @@ if (isset($_POST['login'])) {
     <meta name="keywords" content="jewelry, jewellery">
     <meta name="robots" content="all">
 
-    <title>Palak Jewellers | Signi-in | Signup</title>
+    <title>OM Palak Jewellers | Signi-in | Signup</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">

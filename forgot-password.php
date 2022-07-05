@@ -47,7 +47,7 @@ exit();
     <meta name="keywords" content="jewelry, jewellery">
     <meta name="robots" content="all">
 
-    <title>Palak Jewellers | Forgot Password</title>
+    <title>OM Palak Jewellers | Forgot Password</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">

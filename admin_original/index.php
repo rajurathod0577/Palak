@@ -36,7 +36,7 @@ exit();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palak Jewellers | Admin login</title>
+    <title>OM Palak Jewellers | Admin login</title>
     <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link type="text/css" href="css/theme.css" rel="stylesheet">
@@ -55,7 +55,7 @@ exit();
                 </a>
 
                 <a class="brand" href="index.php">
-                    Palak Jewellers | Admin
+                    OM Palak Jewellers | Admin
                 </a>
 
                 <div class="nav-collapse collapse navbar-inverse-collapse">
@@ -118,7 +118,7 @@ exit();
         <div class="container">
 
 
-            <b class="copyright">&copy; 2021 Palak Jewellers </b> All rights reserved.
+            <b class="copyright">&copy; 2021 OM Palak Jewellers </b> All rights reserved.
         </div>
     </div>
     <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
